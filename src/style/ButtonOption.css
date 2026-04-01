@@ -1,0 +1,71 @@
+.container__button-option{
+    container: button;
+    display: inline-block;
+}
+
+.button-option__block{
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    gap: 0.5rem;
+    border-radius: 2rem;
+    transition: all 0.23s linear;
+} 
+
+.button-option__block--dark{
+    color: #1a1a1a;
+    border: 0.3vw solid #1a1a1a;
+}
+
+.button-option__block--work:hover{
+    color: greenyellow;
+  border: 0.3vw solid greenyellow ;
+}
+
+.button-option__block--work:focus{
+    background-color: greenyellow;
+    color: #1a1a1a;
+    border-color: greenyellow ;
+}
+
+.button-option__block--learning:hover{
+    color: #535bf2;
+    border: 0.3vw solid #535bf2;    
+}
+
+.button-option__block--learning:focus{
+    background-color: #535bf2;
+    color: white;
+    border-color: #535bf2;
+}
+
+.button-option__block--home:hover{
+    color: orange;
+    border: 0.3vw solid orange;    
+}
+
+.button-option__block--home:focus{
+    background-color: orange;
+    color: white;
+    border-color: orange;
+}
+
+.button-option__block--icon,
+.button-option__block--titel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media (max-width: 768px){
+    .button-option__block--titel{
+        display: none;
+    }
+
+    .button-option__block--dark{
+        border: 0.8vw solid #1a1a1a;
+    }
+}

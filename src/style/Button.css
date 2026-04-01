@@ -1,0 +1,53 @@
+.container__button {
+    container: button;
+    display: inline-block;
+}
+
+.button-block {
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 2rem;
+    transition: all 0.23s linear;
+}
+
+.button-block--white {
+    background-color: white;
+    color: #1a1a1a;
+}
+
+.button-block--black {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.button-block--white:hover,
+.button-block--black:hover {
+    background-color: rgb(189, 184, 184);
+    color: #1a1a1aae;
+}
+
+.button-block--white:focus {
+    color: white;
+    background-color: #1a1a1a;
+}
+
+.button-block--black:hover {
+    color: #1a1a1a;
+    background-color: white;
+}
+
+.button-block__icon,
+.button-block__titel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .adaptiv__button {
+        display: none;
+    }
+}
