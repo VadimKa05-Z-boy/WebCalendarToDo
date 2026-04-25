@@ -40,33 +40,110 @@ function App() {
         </svg>
       )},
     ]
+  
+  const now = new Date();
 
+  const [blockYear, setBlockYear] = useState(()=> now.getFullYear())
+  const [blockMonth,setBlockMonth] = useState(()=>now.getMonth())
+  
+  let mounthLength = new Date(blockYear,blockMonth+1, 0).getDate()
+  let mounthStart =  (new Date(blockYear,blockMonth,1).getDay()+6) % 7 
+
+  let mas = []
+  for(let i=1; i <= mounthLength; i++){
+    mas.push(i)
+  }
+  
+  for(let i=0; i<mounthStart; i++){
+    mas.unshift(``)
+  }
+  
+  for(let i=mas.length; i< 42; i++){
+      mas.push(``)
+  }
+
+  let masFin=[[],[],[],[],[],[]]
+  let b =0;
+  for(let i=0; i<6; i++){
+    for(let y=0; y<7; y++){
+      masFin[i][y]=mas[b];
+      b+=1
+    }
+  }
+
+  const[listCalendar,setListCaledar] =useState([])
+
+  let yearNow = blockYear
+  let monthNow = blockMonth
 
   const choseYear =()=>{
     console.log('Выбор года')
   }
 
   const choseMonth = ()=>{
-    console.log('Выбираем месяц')
+    console.log('Выбираем месяц' )
   }
 
   const upMonth = () =>{
+    let newMonth, newYear
+
+    if (blockMonth === 11){
+      newMonth = 0
+      newYear = blockYear + 1
+    } else{
+      newMonth = blockMonth + 1
+      newYear = blockYear
+    }
+
+    setBlockMonth(newMonth)
+    setBlockYear(newYear)
+    setListCaledar(
+      masFin => masFin
+    )
+
     console.log(`следующий месяц`)
   }
 
   const downMonth = ()=>{
+    let newMonth, newYear
+
+    if(blockMonth === 0) {
+      newMonth = 11 
+      newYear = blockYear - 1
+    } else {
+      newMonth = blockMonth - 1
+      newYear = blockYear
+    } 
+
+    setBlockMonth(newMonth) 
+    setBlockYear(newYear)
+
     console.log(`предыдущий месяц`)
   }
 
   const sortMont = ()=>{
+    setListCaledar(masFin)
     console.log(`Задачи на этот месяц`)
   }
 
   const sortWeek = ()=>{
-    console.log(`Задачи на эту неделю`)
+    let a = 0
+    let dayNow = now.getDate()
+    for(let i=0; i<6; i++){
+      for(let y=0; y<7; y++){
+        if(dayNow === masFin[i][y]){
+          a = i;
+          break
+        }
+      }
+    }
+    
+    setListCaledar([masFin[a]])
+    console.log(`Задачи на эту неделю`,dayNow, a, masFin[a])
   }
 
   const sortDay=()=>{
+    let dayNow = now.getDate()
     console.log(`Задачи на этот день`)
   }
 
@@ -133,8 +210,12 @@ function App() {
           onButtonSortLisMonthTask = {sortMont}
           onButtonSortLisWeekTask = {sortWeek}
           onButtonSortLisDayTask = {sortDay}
+          yearNow = {yearNow}
+          monthNow = {monthNow}
         />
-        <Calendar />
+        <Calendar
+          onCalendarListMonth={listCalendar} 
+        />
       </div>
       
       <NavigationForTask 
