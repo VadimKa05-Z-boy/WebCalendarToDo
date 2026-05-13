@@ -1,11 +1,37 @@
 export function Calendar(props)  {
     const{
-        onCalendarListMonth
+        onCalendarListMonth,
+        onCalendarGrid,
+        onCalendarType
     }=props
 
-    const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+    let day = (new Date().getDay() + 6) % 7 
+    switch(day){
+        case 0:
+            day='ПН'
+            break
+        case 1:
+            day='BT'
+            break
+        case 2:
+            day='СР'
+            break
+        case 3:
+            day='ЧТ'
+            break
+        case 4:
+            day='ПТ'
+            break
+        case 5:
+            day='СБ'
+            break
+        case 6:
+            day='ВС'
+            break
+    }
+    const days = (onCalendarType===`month`|| onCalendarType===`week`) ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : [day]
     
-    let mass = onCalendarListMonth
+    let mass =  onCalendarGrid //onCalendarListMonth
 
     return(
     <ul className="calendar__list">     
@@ -20,7 +46,7 @@ export function Calendar(props)  {
                 })}
             </ul>
         </li>
-        
+         
         <div>
            {mass.map((mas, rowIndex)=>(
             <ul className="calendar_days" key={rowIndex}>

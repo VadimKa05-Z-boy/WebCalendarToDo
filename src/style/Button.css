@@ -34,9 +34,9 @@
     background-color: #1a1a1a;
 }
 
-.button-block--black:hover {
-    color: #1a1a1a;
-    background-color: white;
+.button-block--black:focus {
+    background-color: lightskyblue;
+    color: white;
 }
 
 .button-block__icon,
